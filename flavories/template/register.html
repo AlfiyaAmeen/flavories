@@ -37,13 +37,14 @@
 <body background="{% static '\images\fruits.jpg' %}"></body>
     <center><div class="main">
         <h1>register</h1>
-        <form action="regsub/">
+        <form action="regsub/" method="post">
+            {% csrf_token %}
         <input type="text" placeholder="firstName" name="fname" ><br>
         <input type="text" placeholder="last Name" name="lname" ><br>
         <input type="text" placeholder="username"  name="uname" required><br>
         <input type="text" placeholder="email"  name="email" required><br>
         <input type="password" placeholder="Password"  name="pas" required><br>
-        <input type="repassword" placeholder="Repassword" name="repas" required><br>
+        <input type="password" placeholder="repassword" name="repas" required><br>
         <button  type="submit">register</button>
         </form>
 
