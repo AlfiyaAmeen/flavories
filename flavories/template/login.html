@@ -37,7 +37,8 @@
 <body background="{% static '\images\fruits.jpg' %}"></body>
     <center><div class="main">
         <h1>login</h1>
-        <form action="loginsub/" method="post">
+        <font color="red">{{msg}}</font>
+        <form action="{% url 'loginpage' %}" method="post">
             {% csrf_token %}
         <input type="text" placeholder="username" name="user" required><br>
         <input type="password" placeholder="Password"  name="pas" required><br>

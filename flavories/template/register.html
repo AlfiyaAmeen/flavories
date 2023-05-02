@@ -37,7 +37,8 @@
 <body background="{% static '\images\fruits.jpg' %}"></body>
     <center><div class="main">
         <h1>register</h1>
-        <form action="regsub/" method="post">
+        <font color="red">{{msg}}</font>
+        <form action="{% url 'registerpage' %}" method="POST">
             {% csrf_token %}
         <input type="text" placeholder="firstName" name="fname" ><br>
         <input type="text" placeholder="last Name" name="lname" ><br>

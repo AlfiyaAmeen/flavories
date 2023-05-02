@@ -9,43 +9,61 @@ def index(request):
 
 def test1(request):
     return render(request,"text.html",{"val":"uname"})
-def login(request):
-    return render(request,"login.html")
-def register(request):
+
+
     return render(request,"register.html")
-def loginsub(request):
-    uname=request.POST["user"]
-    pname=request.POST["pas"]
-    u=auth.authenticate(username=uname,password=pname)
-    if u:
-        auth.login(request,u)
-        return redirect("/")
+    
+def login(request):
+    if request.method=="POST":
+        uname=request.POST["user"]
+        pname=request.POST["pas"]
+        u=auth.authenticate(username=uname,password=pname)
+        if u:
+            auth.login(request,u)
+            return redirect("/")
+        msg="invalid username and password"
+        return render (request,"login.html",{"msg":msg})
+
+    else:
+         
+         return render(request,"login.html")
+
 
     return render (request,"login.html",{"val":u})
-def regsub(request):
-    fname=request.POST["fname"]
-    lname=request.POST["lname"]
-    uname=request.POST["uname"]
-    email=request.POST["email"]
-    pas=request.POST["pas"]
-    repas=request.POST["repas"]
-    if pas==repas:
-        if User.objects.filter(username=uname):
-            msg="username is already taken"
-            return render(request,"text.html",{"val":msg})
- 
-        elif User.objects.filter(email=email):
-            msg="Email is already taken" 
-            return render(request,"text.html",{"val":msg})
- 
+def register(request):
+    if request.method=="POST":
+        fname=request.POST["fname"]
+        lname=request.POST["lname"]
+        uname=request.POST["uname"]
+        email=request.POST["email"]
+        pas=request.POST["pas"]
+        repas=request.POST["repas"]
+        if pas==repas:
+            if User.objects.filter(username=uname):
+                msg="username is already taken"
+                return render(request,"register.html",{"msg":msg})
+        
+            elif User.objects.filter(email=email):
+                msg="Email is already taken" 
+                return render(request,"register.html",{"msg":msg})
+        
 
-        else:
-            user=User.objects.create_user(first_name=fname,last_name=lname,username=uname,email=email,
-            password=pas)
-            user.save();
-            return redirect("/")
-    else:
-        msg="Password invalid"
-        return render(request,"text.html",{"val":msg})
- 
+            else:
+                user=User.objects.create_user(first_name=fname,last_name=lname,username=uname,email=email,
+                password=pas)
+                user.save();
+                auth.login(request,user)
+                return redirect("/")
     
+    
+            
+            
+        else:
+            msg="Password invalid"
+            return render(request,"register.html",{"msg":msg})
+ 
+    else:
+        return render(request,"register.html")
+def logout(request):
+    auth.logout(request)
+    return redirect("/")
