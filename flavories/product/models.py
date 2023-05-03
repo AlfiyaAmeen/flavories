@@ -7,4 +7,4 @@ class fruits(models.Model):
     price=models.IntegerField()
     qty=models.IntegerField()
     desc=models.TextField()
-    date=models.DatetimeField(auto_now_add=True)
+    date=models.DateTimeField(auto_now_add=True)
