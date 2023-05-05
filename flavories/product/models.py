@@ -8,3 +8,12 @@ class fruits(models.Model):
     qty=models.IntegerField()
     desc=models.TextField()
     date=models.DateTimeField(auto_now_add=True)
+class commentbox(models.Model):
+    proid=models.Foreignkey(fruits,related_name="cmt",on_delete=models.CASCADE)
+    user=models.charField()
+    msg=models.TextField()
+    date=models.DateTimeField(auto_now_add=True)
+    like=models.IntegerField()
+
+
+

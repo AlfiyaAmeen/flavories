@@ -42,7 +42,7 @@
       padding-left:20px;
       border-radius:10px;
       } 
-    .commentbox button{
+    .commentbox a{
       border-radius:10px;
       background-color:rgb(184,167,167);
     }
@@ -51,7 +51,14 @@
       margin-right:10px;
     }
     .commententry{
-
+      width:600px;
+      padding:20px;
+      border-radius:10px;
+      background-color:#d9d6d6;
+    }
+    .commententry textarea{
+      border-radius:10px;
+      padding-left:10px;
     }
 
     
@@ -146,6 +153,18 @@
           </div>
         </div>
       </div>
+      <h2>comments</h2>
+      <div class="commentbox">
+        {% for i in "abcd" %}
+        <p>
+          <b>Good product</b>&nbsp;&nbsp;<small>04/05/2023 11.30am</small><br>
+          <small>jerry</small>&nbsp;&nbsp;<font>20</font><a href="like/"><img src="{% static 'images/likes.png' %}"width-="10px;"></a>        
+        </p>
+        {% endfor %}
+      </div>
+      <div class="commentary"></div>
+          <Textarea name="id" cols="50" rows="3" placeholder="enter your comment..."></Textarea><br>
+          <button>submit</button>
     </div>
   </section>
 

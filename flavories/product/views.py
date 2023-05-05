@@ -6,3 +6,7 @@ def product(request):
     iname=request.GET['id']
     obj=fruits.objects.get(id=iname)
     return render(request,"about.html",{"data":obj})
+def comment(request):
+    return render(request,"test.html")
+def like(request):
+    return render(request,"test.html")
