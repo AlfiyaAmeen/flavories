@@ -7,7 +7,7 @@ from product.models import fruits
 # Create your views here.
 def index(request):
     obj=fruits.objects.all()
-    print("hi",obj)
+
     return render(request,"index.html",{"data":obj})
 
 

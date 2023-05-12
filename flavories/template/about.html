@@ -60,7 +60,13 @@
       border-radius:10px;
       padding-left:10px;
     }
-
+    .recent{
+      margin-left:10px;
+      border-radius:25px;
+    }
+    .recent:hover{
+      scale:1.2;
+    }
     
 
 
@@ -133,6 +139,9 @@
           <div class="img-box">
             <img src="{{data.img.url}}" alt="">
           </div>
+          {%for i in rct %} 
+          <img class="recent" src="{{i.img.url}}" alt="" width="150px" height="150px">
+          {% endfor %}
         </div>
         <div class="col-md-5">
           <div class="detail-box">
@@ -159,7 +168,7 @@
         {% for i in data.cmt.all %}
         <p>
           <b>{{i.msg}}</b>&nbsp;&nbsp;<small>{{i.date}}</small><br>
-          <small>{{i.user}}</small>&nbsp;&nbsp;<font>{{i.like}}</font><a href="like/"><img src="{% static 'images/likes.png' %}"width-="10px;"></a>        
+          <small>{{i.user}}</small>&nbsp;&nbsp;<font>{{i.like}}</font><a href="like/?id={{i.id}}"><img src="{% static 'images/likes.png' %}"width-="10px;"></a>        
         </p>
         {% endfor %}
         {% else %}
@@ -169,7 +178,7 @@
       <div class="commentary"></div>
       <form action="cmt/" method="GET">
 
-          <Textarea name="cmtmsg" cols="50" rows="3" placeholder="enter your comment..."></Textarea><br>
+          <Textarea name="cmtmsg" cols="50" rows="3" placeholder="enter your comment..." required></Textarea><br>
           <input type="hidden" value="{{user.username}}" name="user">
           <input type="hidden" value="{{data.id}}" name="proid">
           <button>submit</button>
@@ -269,9 +278,9 @@
   <!-- footer section -->
 
 
-  <script type="text/javascript" src="{ % static 'js/jquery-3.4.1.min.js' %}"></script>
-  <script type="text/javascript" src="{ % static 'js/bootstrap.js' %}"></script>
-  <script type="text/javascript" src="{ % static 'js/custom.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/jquery-3.4.1.min.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/bootstrap.js' %}"></script>
+  <script type="text/javascript" src="{% static 'js/custom.js' %}"></script>
 </body>
 
 </html>
